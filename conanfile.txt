@@ -1,0 +1,7 @@
+[requires]
+boost/1.75.0
+libcurl/7.69.1
+jsoncpp/1.9.4
+
+[generators]
+cmake
