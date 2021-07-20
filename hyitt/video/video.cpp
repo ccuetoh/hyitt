@@ -54,7 +54,16 @@ bool Video::isSet() const {
 }
 
 std::map<std::string, std::string> Video::getInfo() {
-    const std::string URL = "https://www.youtube.com/get_video_info?video_id=" + getId();
+    std::string watchUrl = "https://youtube.com/watch?v=" + getId();
+    char *eUrl = curl_easy_escape(curl_easy_init(), watchUrl.c_str(), watchUrl.size());
+    const std::string URL = "https://www.youtube.com/get_video_info"
+            "?video_id=" + getId() +
+            "&ps=default"
+            "&eurl="  + eUrl +
+            "&hl=en_US"
+            "&html5=1"
+            "&c=TVHTML5"
+            "&cver=7.20201028";
 
     cpr::Session session;
     session.SetUrl(URL);
